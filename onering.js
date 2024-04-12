@@ -4,6 +4,11 @@ window.members = [
     url: "https://siqu.neocities.org/",
     description: "",
   },
+  {
+    name: "oiwa",
+    website: "https://oiwa.neocities.org/",
+    description: "tramontane",
+  },
 ]
 
 customElements.define(
