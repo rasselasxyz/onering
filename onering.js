@@ -6,7 +6,7 @@ window.members = [
   },
   {
     name: "oiwa",
-    website: "https://oiwa.neocities.org/",
+    url: "https://oiwa.neocities.org/",
     description: "tramontane",
   },
 ]
