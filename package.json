@@ -1,0 +1,16 @@
+{
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js --dev",
+    "screenshot": "node screenshot.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.20.2",
+    "playwright": "^1.43.1"
+  },
+  "dependencies": {
+    "@shoelace-style/shoelace": "^2.15.0",
+    "lit-html": "^3.1.2"
+  }
+}
