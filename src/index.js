@@ -13,7 +13,7 @@ const nonMember = () => html`<b>You aren't a part of the One Ring (yet).</b>`
 
 const ring = (members, currentIndex) => html`<div class="one-ring">
   <div class="title">
-    <img src=${"/assets/ring.png"} />
+    <img src=${IMAGE_BASE_PATH + "/assets/ring.png"} />
     <h2>The One Ring</h2>
   </div>
   <sl-carousel class="carousel" pagination navigation loop>
@@ -22,7 +22,7 @@ const ring = (members, currentIndex) => html`<div class="one-ring">
         html`<sl-carousel-item>
           <a href=${m.url}>
             <img style="object-fit: fill; width: 100%; height: 100%; object-fit: cover; "
-            src=${`/assets/screenshots/${m.name}.jpg`}
+            src=${IMAGE_BASE_PATH + `/assets/screenshots/${m.name}.jpg`}
           </a>
           /></sl-carousel-item
         >`
