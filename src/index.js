@@ -12,20 +12,26 @@ const IMAGE_BASE_PATH = "https://cdn.jsdelivr.net/gh/rasselasxyz/onering"
 const nonMember = () => html`<b>You aren't a part of the One Ring (yet).</b>`
 
 const ring = (members, currentIndex) => html`<div class="one-ring">
-  <div class="title">
+  <a class="title" href="https://siqu.neocities.org/onering.html">
     <img src=${IMAGE_BASE_PATH + "/assets/ring.png"} />
     <h2>The One Ring</h2>
-  </div>
+  </a>
   <sl-carousel class="carousel" pagination navigation loop>
     ${members.map(
       (m) =>
         html`<sl-carousel-item>
-          <a href=${m.url}>
-            <img style="object-fit: fill; width: 100%; height: 100%; object-fit: cover; "
-            src=${IMAGE_BASE_PATH + `/assets/screenshots/${m.name}.jpg`}
-          </a>
-          /></sl-carousel-item
-        >`
+          <figure style="padding: 0;">
+            <a href=${m.url}>
+              <img
+                style="object-fit: fill;  height: 150px; object-fit: contain; aspect-ratio: 16 / 9;"
+                alt=${m.name}
+                src=${IMAGE_BASE_PATH + `/assets/screenshots/${m.name}.jpg`}
+              />
+            </a>
+
+            <figcaption>${m.description}</figcaption>
+          </figure>
+        </sl-carousel-item>`
     )}
   </sl-carousel>
 </div>`
@@ -41,7 +47,7 @@ const styles = () => html`<style>
   }
 
   .one-ring {
-    max-width: 300px;
+    max-width: 450px;
   }
 
   .one-ring h2 {
@@ -50,9 +56,12 @@ const styles = () => html`<style>
 
   .one-ring .title {
     display: flex;
+    text-decoration: none;
+    color: inherit;
     gap: 0 10px;
     align-items: center;
     justify-content: center;
+    height: 32px;
   }
 
   .one-ring .title img {
