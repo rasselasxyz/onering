@@ -16,21 +16,22 @@ const ring = (members, currentIndex) => html`<div class="one-ring">
     <img src=${IMAGE_BASE_PATH + "/assets/ring.png"} />
     <h2>The One Ring</h2>
   </a>
-  <sl-carousel class="carousel" pagination navigation loop>
+  <sl-carousel
+    style="--aspect-ratio: 3/2; padding-top: 10px;"
+    class="carousel"
+    pagination
+    navigation
+    loop
+  >
     ${members.map(
       (m) =>
-        html`<sl-carousel-item>
-          <figure style="padding: 0;">
-            <a href=${m.url}>
-              <img
-                style="object-fit: fill;  height: 150px; object-fit: contain; aspect-ratio: 16 / 9;"
-                alt=${m.name}
-                src=${IMAGE_BASE_PATH + `/assets/screenshots/${m.name}.jpg`}
-              />
-            </a>
-
-            <figcaption>${m.description}</figcaption>
-          </figure>
+        html`<sl-carousel-item style="position: relative;">
+          <img alt=${m.name} src=${IMAGE_BASE_PATH + `/assets/screenshots/${m.name}.jpg`} />
+          <a
+            href=${m.url}
+            style="height: 100%; width: 100%; display: block; position: absolute; inset: 0;"
+          ></a>
+          <small>${m.description}</small>
         </sl-carousel-item>`
     )}
   </sl-carousel>
@@ -45,9 +46,11 @@ const styles = () => html`<style>
     display: block;
     text-align: center;
   }
-
+  .carousel::part(navigation-button) {
+    padding: 0;
+  }
   .one-ring {
-    max-width: 450px;
+    max-width: 350px;
   }
 
   .one-ring h2 {
@@ -89,9 +92,10 @@ customElements.define(
       let members = window.members
       let currentIndex = members.findIndex((member) => window.location.href.includes(member.url))
       let view = currentIndex === -1 ? nonMember() : ring(members, currentIndex)
-
       let wrapper = html`${linkFont}${styles()}${view}`
       render(wrapper, this.shadowRoot)
+      let carousel = this.shadowRoot.querySelector("sl-carousel")
+      setTimeout(() => carousel?.goToSlide(currentIndex, "auto"), 50)
     }
   }
 )
